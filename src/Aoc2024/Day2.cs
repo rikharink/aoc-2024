@@ -27,8 +27,9 @@ public class Day2 : Day<int>
 
                 if (!withTolerance) return false;
                 var removeCurrent = RemoveOneItem(i).IsSafe();
+                var removePrevious = RemoveOneItem(i - 1).IsSafe();
                 var removePreviousPrevious = i > 1 && RemoveOneItem(i - 2).IsSafe();
-                return removeCurrent || removePreviousPrevious;
+                return removeCurrent || removePrevious || removePreviousPrevious;
             }
 
             return true;
@@ -37,19 +38,17 @@ public class Day2 : Day<int>
         public Report RemoveOneItem(int index) => new(Levels.RemoveOneItem(index));
     }
 
-    private readonly List<Report> _reports;
-
-    public List<Report> Reports => _reports;
+    public List<Report> Reports { get; }
 
     public Day2(string input) : base(input)
     {
-        _reports = input.Split("\n", StringSplitOptions.RemoveEmptyEntries)
+        Reports = input.Split("\n", StringSplitOptions.RemoveEmptyEntries)
             .Select(line => new Report(line.Split(' ', StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToList()))
             .ToList();
     }
 
-    public override int Part1() => _reports.Count(r => r.IsSafe());
-    public override int Part2() => _reports.Count(r => r.IsSafe(true));
+    public override int Part1() => Reports.Count(r => r.IsSafe());
+    public override int Part2() => Reports.Count(r => r.IsSafe(true));
 }
