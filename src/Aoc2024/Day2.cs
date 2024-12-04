@@ -42,7 +42,7 @@ public class Day2 : Day<int>
 
     public Day2(string input) : base(input)
     {
-        Reports = input.Split("\n", StringSplitOptions.RemoveEmptyEntries)
+        Reports = input.SplitNewLines()
             .Select(line => new Report(line.Split(' ', StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToList()))

@@ -7,7 +7,7 @@ public class Day1 : Day<int>
 
     public Day1(string input) : base(input)
     {
-        var lines = input.Split("\n");
+        var lines = input.SplitNewLines();
         foreach (var line in lines)
         {
             if (line.Length == 0) continue;

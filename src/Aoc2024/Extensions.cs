@@ -13,4 +13,10 @@ public static class Extensions
         list.CopyTo(index + 1, result, index, listCount - 1 - index);
         return [..result];
     }
+
+    public static string StripNewLines(this string input)
+        => input.Replace("\r", "").Replace("\n", "");
+    
+    public static IEnumerable<string> SplitNewLines(this string input) =>
+        input.Split(["\r\n", "\n"], StringSplitOptions.RemoveEmptyEntries);
 }
