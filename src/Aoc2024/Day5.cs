@@ -52,7 +52,7 @@ public class Day5 : Day<int>
 
     private PrintJob FixIncorrect(PrintJob job)
     {
-        var didFix = false;
+        bool didFix;
         do
         {
             didFix = false;
