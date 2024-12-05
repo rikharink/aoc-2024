@@ -1,6 +1,6 @@
 namespace Aoc2024;
 
-public class Day2 : Day<int>
+public class Day2(string? input = null) : Day<int>(input)
 {
     public record Report(List<int> Levels)
     {
@@ -38,11 +38,11 @@ public class Day2 : Day<int>
         public Report RemoveOneItem(int index) => new(Levels.RemoveOneItem(index));
     }
 
-    public List<Report> Reports { get; }
+    private List<Report> Reports { get; set; }
 
-    public Day2(string input) : base(input)
+    protected override void ParseInput()
     {
-        Reports = input.SplitNewLines()
+        Reports = Input.SplitNewLines()
             .Select(line => new Report(line.Split(' ', StringSplitOptions.RemoveEmptyEntries)
                 .Select(int.Parse)
                 .ToList()))

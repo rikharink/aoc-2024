@@ -1,13 +1,14 @@
 namespace Aoc2024;
 
-public class Day1 : Day<int>
+public sealed class Day1(string? input = null) : Day<int>(input)
 {
     private List<int> Left { get; } = [];
     private List<int> Right { get; } = [];
+    
 
-    public Day1(string input) : base(input)
+    protected override void ParseInput()
     {
-        var lines = input.SplitNewLines();
+        var lines = Input.SplitNewLines();
         foreach (var line in lines)
         {
             if (line.Length == 0) continue;

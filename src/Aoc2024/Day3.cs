@@ -1,6 +1,6 @@
 namespace Aoc2024;
 
-public partial class Day3(string input) : Day<int>(input)
+public partial class Day3(string? input = null) : Day<int>(input)
 {
     [GeneratedRegex(@"mul\(([0-9]{1,3}),([0-9]{1,3})\)", RegexOptions.IgnoreCase, "en-US")]
     private static partial Regex MulPart1();

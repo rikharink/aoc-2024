@@ -2,10 +2,10 @@ using System.Collections.Immutable;
 
 namespace Aoc2024;
 
-public class Day5 : Day<int>
+public class Day5(string? input = null) : Day<int>(input)
 {
-    private readonly FrozenSet<PageOrderingRule> _orderingRules;
-    private readonly ImmutableArray<PrintJob> _printJobs;
+    private FrozenSet<PageOrderingRule> _orderingRules = null!;
+    private ImmutableArray<PrintJob> _printJobs;
 
     public record struct PageOrderingRule(int PageA, int PageB)
     {
@@ -22,9 +22,9 @@ public class Day5 : Day<int>
             => new(input.Split(",").Select(int.Parse).ToArray());
     }
 
-    public Day5(string input) : base(input)
+    protected override void ParseInput()
     {
-        var (top, bottom) = input.SplitOnBlankLine();
+        var (top, bottom) = Input.SplitOnBlankLine();
         _orderingRules = top.SplitNewLines().Select(PageOrderingRule.Parse).ToFrozenSet();
         _printJobs = [..bottom.SplitNewLines().Select(PrintJob.Parse)];
     }

@@ -1,16 +1,14 @@
-using System.Diagnostics;
-
 namespace Aoc2024;
 
-public class Day4 : Day<int>
+public class Day4(string? input = null) : Day<int>(input)
 {
-    private readonly Grid<char> _xmas;
+    private Grid<char> _xmas = null!;
     private HashSet<Point> _xmasPoints = [];
 
-    public Day4(string input) : base(input)
+    protected override void ParseInput()
     {
-        var lines = input.SplitNewLines().ToArray();
-        _xmas = new Grid<char>(lines.Length, lines[0].Length, input.StripNewLines().ToCharArray());
+        var lines = Input.SplitNewLines().ToArray();
+        _xmas = new Grid<char>(lines.Length, lines[0].Length, Input.StripNewLines().ToCharArray());
     }
 
     private string GetRun(Point start, Direction direction, long length) =>
@@ -115,6 +113,7 @@ public class Day4 : Day<int>
                 found++;
             }
         }
+
         return found;
     }
 
