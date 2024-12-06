@@ -16,7 +16,7 @@ public class Day2Tests
         var day = new Day2(input);
         const string expected = "2";
         var actual = day.Part1();
-        Assert.Equal(expected, actual);
+        actual.Should().Be(expected);
     }
 
     [Fact]
@@ -33,7 +33,7 @@ public class Day2Tests
         var day = new Day2(input);
         const string expected = "4";
         var actual = day.Part2();
-        Assert.Equal(expected, actual);
+        actual.Should().Be(expected);
     }
 
     [Theory]
@@ -51,7 +51,7 @@ public class Day2Tests
     {
         var report = new Day2.Report(values.ToList());
         var actual = report.IsSafe(true);
-        Assert.Equal(expected, actual);
+        actual.Should().Be(expected);
     }
 
     [Theory]
@@ -68,7 +68,7 @@ public class Day2Tests
     {
         var report = new Day2.Report(values.ToList());
         var actual = report.IsSafe(false);
-        Assert.Equal(expected, actual);
+        actual.Should().Be(expected);
     }
 
 
@@ -599,7 +599,7 @@ public class Day2Tests
         {
             var newReport = orgReport.RemoveOneItem(i);
             var isSafeNew = newReport.IsSafe(false);
-            Assert.False(isSafeNew);
+            isSafeNew.Should().Be(false);
         }
     }
 }

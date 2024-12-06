@@ -34,7 +34,7 @@ public class Day4Tests
                                 """;
         day.Part1();
         var actual = day.StripNonXmas().ToString();
-        Assert.Equal(expected, actual);
+        actual.Should().Be(expected);
     }
 
     [Fact]
@@ -69,7 +69,7 @@ public class Day4Tests
 
         day.Part2();
         var actual = day.StripNonXmas().ToString();
-        Assert.Equal(expected, actual);
+        actual.Should().Be(expected);
     }
 
 
@@ -91,7 +91,7 @@ public class Day4Tests
         var day = new Day4(input);
         const string expected = "18";
         var actual = day.Part1();
-        Assert.Equal(expected, actual);
+        actual.Should().Be(expected);
     }
 
     [Fact]
@@ -112,6 +112,6 @@ public class Day4Tests
         var day = new Day4(input);
         const string expected = "9";
         var actual = day.Part2();
-        Assert.Equal(expected, actual);
+        actual.Should().Be(expected);
     }
 }

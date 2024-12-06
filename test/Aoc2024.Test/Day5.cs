@@ -38,7 +38,7 @@ public class Day5Tests
         var day = new Day5(input);
         const string expected = "143";
         var actual = day.Part1();
-        Assert.Equal(expected, actual);
+        actual.Should().Be(expected);
     }
 
     [Fact]
@@ -77,6 +77,6 @@ public class Day5Tests
         var day = new Day5(input);
         const string expected = "123";
         var actual = day.Part2();
-        Assert.Equal(expected, actual);
+        actual.Should().Be(expected);
     }
 }

@@ -16,7 +16,7 @@ public class Day1Tests
         var day1 = new Day1(input);
         const string expected = "11";
         var actual = day1.Part1();
-        Assert.Equal(expected, actual);
+        actual.Should().Be(expected);
     }
 
     [Fact]
@@ -33,6 +33,6 @@ public class Day1Tests
         var day1 = new Day1(input);
         const string expected = "31";
         var actual = day1.Part2();
-        Assert.Equal(expected, actual);
+        actual.Should().Be(expected);
     }
 }

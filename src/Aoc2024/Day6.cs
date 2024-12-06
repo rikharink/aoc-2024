@@ -89,9 +89,10 @@ public class Day6(string? input = null) : Day(input)
 
     private IEnumerable<Grid<bool>> GetPermutations()
     {
-        var emptyPositions = Map.Data.Select((c, i) => (c, i)).Where(x => x.c == Empty)
-            .Select(x => new Point(x.i % Map.Width, x.i / Map.Width)).ToHashSet();
-        foreach (var pos in emptyPositions)
+        foreach (var pos in Map.Data
+                     .Select((c, i) => (c, i))
+                     .Where(x => x.c == Empty)
+                     .Select(x => new Point(x.i % Map.Width, x.i / Map.Width)))
         {
             var map = Map2.Clone();
             map[pos.X, pos.Y] = true;
