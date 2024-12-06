@@ -1,4 +1,4 @@
-namespace Aoc2024;
+namespace Aoc2024.Lib;
 
 public enum CompassDirection
 {

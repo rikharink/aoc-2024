@@ -1,6 +1,6 @@
 namespace Aoc2024;
 
-public sealed class Day1(string? input = null) : Day<int>(input)
+public sealed class Day1(string? input = null) : Day(input)
 {
     private List<int> Left { get; } = [];
     private List<int> Right { get; } = [];
@@ -19,7 +19,7 @@ public sealed class Day1(string? input = null) : Day<int>(input)
         }
     }
 
-    public override int Part1()
+    public override string Part1()
     {
         Left.Sort();
         Right.Sort();
@@ -32,9 +32,9 @@ public sealed class Day1(string? input = null) : Day<int>(input)
             result += distance;
         }
 
-        return result;
+        return result.ToString();
     }
 
-    public override int Part2()
-        => Left.Sum(number => number * Right.Count(x => x == number));
+    public override string Part2()
+        => Left.Sum(number => number * Right.Count(x => x == number)).ToString();
 }

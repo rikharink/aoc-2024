@@ -1,6 +1,6 @@
 ﻿namespace Aoc2024.Test;
 
-public class Day5
+public class Day5Tests
 {
     [Fact]
     public void Part1()
@@ -27,7 +27,7 @@ public class Day5
                              47|29
                              75|13
                              53|13
-                             
+
                              75,47,61,53,29
                              97,61,53,29,13
                              75,29,13
@@ -35,8 +35,8 @@ public class Day5
                              61,13,29
                              97,13,75,29,47
                              """;
-        var day = new Aoc2024.Day5(input);
-        const int expected = 143;
+        var day = new Day5(input);
+        const string expected = "143";
         var actual = day.Part1();
         Assert.Equal(expected, actual);
     }
@@ -74,8 +74,8 @@ public class Day5
                              61,13,29
                              97,13,75,29,47
                              """;
-        var day = new Aoc2024.Day5(input);
-        const int expected = 123;
+        var day = new Day5(input);
+        const string expected = "123";
         var actual = day.Part2();
         Assert.Equal(expected, actual);
     }

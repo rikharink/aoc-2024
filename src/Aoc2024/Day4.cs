@@ -1,8 +1,8 @@
 namespace Aoc2024;
 
-public class Day4(string? input = null) : Day<int>(input)
+public class Day4(string? input = null) : Day(input)
 {
-    private Grid<char> _xmas = null!;
+    private Grid<char> _xmas;
     private HashSet<Point> _xmasPoints = [];
 
     protected override void ParseInput()
@@ -39,7 +39,7 @@ public class Day4(string? input = null) : Day<int>(input)
         return grid;
     }
 
-    public override int Part1()
+    public override string Part1()
     {
         _xmasPoints.Clear();
         var found = 0;
@@ -92,10 +92,10 @@ public class Day4(string? input = null) : Day<int>(input)
             }
         }
 
-        return found;
+        return found.ToString();
     }
 
-    public override int Part2()
+    public override string Part2()
     {
         _xmasPoints.Clear();
         var found = 0;
@@ -114,7 +114,7 @@ public class Day4(string? input = null) : Day<int>(input)
             }
         }
 
-        return found;
+        return found.ToString();
     }
 
     public override string ToString()

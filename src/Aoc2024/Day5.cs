@@ -2,7 +2,7 @@ using System.Collections.Immutable;
 
 namespace Aoc2024;
 
-public class Day5(string? input = null) : Day<int>(input)
+public class Day5(string? input = null) : Day(input)
 {
     private FrozenSet<PageOrderingRule> _orderingRules = null!;
     private ImmutableArray<PrintJob> _printJobs;
@@ -75,15 +75,14 @@ public class Day5(string? input = null) : Day<int>(input)
         return job;
     }
 
-    public override int Part1()
-    {
-        return _printJobs
+    public override string Part1() 
+        => _printJobs
             .Where(IsCorrect)
             .Select(j => j.Pages[j.Pages.Length / 2])
-            .Sum();
-    }
+            .Sum()
+            .ToString();
 
-    public override int Part2()
+    public override string Part2()
     {
         var incorrectJobs = _printJobs.Where(j => !IsCorrect(j)).ToImmutableArray();
         var fixedJobs = incorrectJobs.Select(FixIncorrect).ToImmutableArray();
@@ -91,6 +90,6 @@ public class Day5(string? input = null) : Day<int>(input)
         if(!fixedJobs.All(IsCorrect))
             throw new InvalidOperationException("Not all jobs are fixed.");
         
-        return fixedJobs.Select(j => j.Pages[j.Pages.Length / 2]).Sum();
+        return fixedJobs.Select(j => j.Pages[j.Pages.Length / 2]).Sum().ToString();
     }
 }

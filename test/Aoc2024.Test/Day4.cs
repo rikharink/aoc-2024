@@ -1,6 +1,6 @@
 ﻿namespace Aoc2024.Test;
 
-public class Day4
+public class Day4Tests
 {
     [Fact]
     public void PartOneFoundPointsTest()
@@ -17,7 +17,7 @@ public class Day4
                              MAMMMXMMMM
                              MXMXAXMASX
                              """;
-        var day = new Aoc2024.Day4(input);
+        var day = new Day4(input);
 
         const string expected = """
                                 ....XXMAS.
@@ -52,7 +52,7 @@ public class Day4
                              MAMMMXMMMM
                              MXMXAXMASX
                              """;
-        var day = new Aoc2024.Day4(input);
+        var day = new Day4(input);
         const string expected = """
                                 .M.S......
                                 ..A..MSMS.
@@ -88,8 +88,8 @@ public class Day4
                              MAMMMXMMMM
                              MXMXAXMASX
                              """;
-        var day = new Aoc2024.Day4(input);
-        const int expected = 18;
+        var day = new Day4(input);
+        const string expected = "18";
         var actual = day.Part1();
         Assert.Equal(expected, actual);
     }
@@ -109,8 +109,8 @@ public class Day4
                              MAMMMXMMMM
                              MXMXAXMASX
                              """;
-        var day = new Aoc2024.Day4(input);
-        const int expected = 9;
+        var day = new Day4(input);
+        const string expected = "9";
         var actual = day.Part2();
         Assert.Equal(expected, actual);
     }

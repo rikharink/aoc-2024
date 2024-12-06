@@ -1,6 +1,6 @@
 namespace Aoc2024;
 
-public class Day2(string? input = null) : Day<int>(input)
+public class Day2(string? input = null) : Day(input)
 {
     public record Report(List<int> Levels)
     {
@@ -49,6 +49,6 @@ public class Day2(string? input = null) : Day<int>(input)
             .ToList();
     }
 
-    public override int Part1() => Reports.Count(r => r.IsSafe());
-    public override int Part2() => Reports.Count(r => r.IsSafe(true));
+    public override string Part1() => Reports.Count(r => r.IsSafe()).ToString();
+    public override string Part2() => Reports.Count(r => r.IsSafe(true)).ToString();
 }

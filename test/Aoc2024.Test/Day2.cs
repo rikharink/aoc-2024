@@ -1,6 +1,6 @@
 ﻿namespace Aoc2024.Test;
 
-public class Day2
+public class Day2Tests
 {
     [Fact]
     public void Part1()
@@ -13,8 +13,8 @@ public class Day2
                              8 6 4 4 1
                              1 3 6 7 9
                              """;
-        var day = new Aoc2024.Day2(input);
-        const int expected = 2;
+        var day = new Day2(input);
+        const string expected = "2";
         var actual = day.Part1();
         Assert.Equal(expected, actual);
     }
@@ -30,8 +30,8 @@ public class Day2
                              8 6 4 4 1
                              1 3 6 7 9
                              """;
-        var day = new Aoc2024.Day2(input);
-        const int expected = 4;
+        var day = new Day2(input);
+        const string expected = "4";
         var actual = day.Part2();
         Assert.Equal(expected, actual);
     }
@@ -44,13 +44,12 @@ public class Day2
     [InlineData(new[] { 8, 6, 4, 4, 1 }, true)]
     [InlineData(new[] { 1, 3, 6, 7, 9 }, true)]
     [InlineData(new[] { 5, 6, 4, 2, 1 }, true)]
-    
     [InlineData(new[] { 72, 73, 75, 77, 79, 82, 79, 85 }, true)]
     [InlineData(new[] { 6, 8, 11, 12, 14, 16, 18, 16 }, true)]
     [InlineData(new[] { 12, 10, 11, 14, 17, 18, 20, 21 }, true)]
     public void Report_IsSafe_WithTolerance(int[] values, bool expected)
     {
-        var report = new Aoc2024.Day2.Report(values.ToList());
+        var report = new Day2.Report(values.ToList());
         var actual = report.IsSafe(true);
         Assert.Equal(expected, actual);
     }
@@ -67,7 +66,7 @@ public class Day2
     [InlineData(new[] { 6, 8, 11, 12, 14, 16, 18, 16 }, false)]
     public void Report_IsSafe_WithoutTolerance(int[] values, bool expected)
     {
-        var report = new Aoc2024.Day2.Report(values.ToList());
+        var report = new Day2.Report(values.ToList());
         var actual = report.IsSafe(false);
         Assert.Equal(expected, actual);
     }
@@ -590,12 +589,12 @@ public class Day2
     {
         var numbers = values.Length;
         var list = values.ToList();
-        var orgReport = new Aoc2024.Day2.Report(list);
+        var orgReport = new Day2.Report(list);
         if (orgReport.IsSafe(true))
         {
             return;
         }
-        
+
         for (var i = 0; i < numbers; i++)
         {
             var newReport = orgReport.RemoveOneItem(i);

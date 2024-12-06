@@ -1,6 +1,6 @@
 namespace Aoc2024;
 
-public partial class Day3(string? input = null) : Day<int>(input)
+public partial class Day3(string? input = null) : Day(input)
 {
     [GeneratedRegex(@"mul\(([0-9]{1,3}),([0-9]{1,3})\)", RegexOptions.IgnoreCase, "en-US")]
     private static partial Regex MulPart1();
@@ -8,7 +8,7 @@ public partial class Day3(string? input = null) : Day<int>(input)
     [GeneratedRegex(@"mul\(([0-9]{1,3}),([0-9]{1,3})\)|(do\(\)|don't\(\))", RegexOptions.IgnoreCase, "en-US")]
     private static partial Regex MulPart2();
 
-    public override int Part1()
+    public override string Part1()
     {
         var result = 0;
         var matches = MulPart1().Matches(Input);
@@ -20,10 +20,10 @@ public partial class Day3(string? input = null) : Day<int>(input)
             result += x * y;
         }
 
-        return result;
+        return result.ToString();
     }
 
-    public override int Part2()
+    public override string Part2()
     {
         var result = 0;
         var matches = MulPart2().Matches(Input);
@@ -48,6 +48,6 @@ public partial class Day3(string? input = null) : Day<int>(input)
             }
         }
 
-        return result;
+        return result.ToString();
     }
 }

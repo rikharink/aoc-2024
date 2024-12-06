@@ -1,8 +1,8 @@
 using System.Text;
 
-namespace Aoc2024;
+namespace Aoc2024.Lib;
 
-public class Grid<T>
+public readonly struct Grid<T> : IEquatable<Grid<T>>
 {
     public long Width { get; }
     public long Height { get; }
@@ -25,6 +25,19 @@ public class Grid<T>
         get => Data[y * Width + x];
         set => Data[y * Width + x] = value;
     }
+
+    public Point? Find(T element)
+    {
+        var index = Array.IndexOf(Data, element);
+        if (index == -1)
+        {
+            return null;
+        }
+        return new Point(index % Width, index / Width);
+    }
+
+    public bool IsInBounds(Point location)
+        => location.X >= 0 && location.X < Width && location.Y >= 0 && location.Y < Height;
 
     public List<T> GetDiagonalNeighbours(Point location)
     {
@@ -130,5 +143,45 @@ public class Grid<T>
     public Grid<T> Clone()
     {
         return new Grid<T>(Width, Height, Data.ToArray());
+    }
+    
+    public override bool Equals(object? obj)
+    {
+        if (obj is null) return false;
+        return obj.GetType() == GetType() && Equals((Grid<T>)obj);
+    }
+
+    public override int GetHashCode()
+    {
+        var hash = new HashCode();
+        hash.Add(Width);
+        hash.Add(Height);
+        foreach (var item in Data)
+        {
+            hash.Add(item);
+        }
+
+        return hash.ToHashCode();
+    }
+
+    public static bool operator ==(Grid<T>? left, Grid<T>? right)
+    {
+        return Equals(left, right);
+    }
+
+    public static bool operator !=(Grid<T>? left, Grid<T>? right)
+    {
+        return !Equals(left, right);
+    }
+
+    public bool Equals(Grid<T> other)
+    {
+        return Width == other.Width && Height == other.Height && Data.SequenceEqual(other.Data);
+    }
+
+    public bool Equals(Grid<T>? other)
+    {
+        if (other is null) return false;
+        return Width == other.Value.Width && Height == other.Value.Height && Data.SequenceEqual(other.Value.Data);
     }
 }

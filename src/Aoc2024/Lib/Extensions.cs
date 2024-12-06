@@ -1,4 +1,4 @@
-namespace Aoc2024;
+namespace Aoc2024.Lib;
 
 public static class Extensions
 {
@@ -33,4 +33,19 @@ public static class Extensions
 
     public static IEnumerable<string> SplitNewLines(this string input) =>
         input.Split(["\r\n", "\n"], StringSplitOptions.RemoveEmptyEntries);
+    
+    public static Grid<char> ToGrid(this string input)
+    {
+        var lines = input.SplitNewLines().ToArray();
+        return new Grid<char>(lines.Length, lines[0].Length, input.StripNewLines().ToCharArray());
+    }
+    
+    public static Grid<bool> ToGrid(this string input, Func<char, bool> predicate)
+    {
+        var lines = input.SplitNewLines().ToArray();
+        var data = input.StripNewLines().Select(predicate).ToArray();
+        return new Grid<bool>(lines.Length, lines[0].Length, data);
+    }
+    
+    
 }

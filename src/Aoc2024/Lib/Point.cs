@@ -1,4 +1,4 @@
-namespace Aoc2024;
+namespace Aoc2024.Lib;
 
 public readonly record struct Point(long X, long Y)
 {
@@ -11,6 +11,15 @@ public readonly record struct Point(long X, long Y)
     public static implicit operator (long X, long Y)(Point point) => (point.X, point.Y);
 
     public long ManhattanDistance(Point other) => Math.Abs(X - other.X) + Math.Abs(Y - other.Y);
+
+    public Point Move(CardinalDirection direction) => direction switch
+    {
+        CardinalDirection.North => this with { Y = Y - 1 },
+        CardinalDirection.South => this with { Y = Y + 1 },
+        CardinalDirection.West => this with { X = X - 1 },
+        CardinalDirection.East => this with { X = X + 1 },
+        _ => throw new ArgumentOutOfRangeException(nameof(direction), direction, null)
+    };
 
     public Point Move(Direction direction) => direction switch
     {
