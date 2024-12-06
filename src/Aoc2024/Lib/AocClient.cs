@@ -14,7 +14,7 @@ public class AocClient
         return input;
     }
 
-    private string GetSessionToken()
+    private static string GetSessionToken()
     {
         var token = Environment.GetEnvironmentVariable("AOC_SESSION_TOKEN");
         if (!string.IsNullOrWhiteSpace(token)) return token;
@@ -23,7 +23,7 @@ public class AocClient
         {
             throw new InvalidOperationException("Session token not found");
         }
-        
+
         token = File.ReadAllText(".token");
         if (!string.IsNullOrWhiteSpace(token)) return token;
         throw new InvalidOperationException("Session token not found");
@@ -39,8 +39,9 @@ public class AocClient
         return reader.ReadToEnd();
     }
 
-    private void CacheInput(int day, string input)
+    private static void CacheInput(int day, string input)
     {
+        Directory.CreateDirectory("input");
         var path = Path.Combine("input", $"{day}.txt");
         File.WriteAllText(path, input);
     }

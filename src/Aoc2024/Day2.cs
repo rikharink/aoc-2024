@@ -38,7 +38,7 @@ public class Day2(string? input = null) : Day(input)
         public Report RemoveOneItem(int index) => new(Levels.RemoveOneItem(index));
     }
 
-    private List<Report> Reports { get; set; }
+    private List<Report> Reports { get; set; } = null!;
 
     protected override void ParseInput()
     {
