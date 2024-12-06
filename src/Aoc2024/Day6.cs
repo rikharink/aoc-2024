@@ -16,9 +16,9 @@ public class Day6(string? input = null) : Day(input)
         Map2 = Input.ToGrid(c => c == Wall);
     }
 
-    public override string Part1()
+    private HashSet<Point> FindRoute()
     {
-        var visited = new HashSet<int>((int)(Map.Width * Map.Height));
+        var visited = new HashSet<Point>((int)(Map.Width * Map.Height));
         var facing = CardinalDirection.North;
         var pos = Map.Find(Guard);
         if (pos is null)
@@ -27,7 +27,7 @@ public class Day6(string? input = null) : Day(input)
         }
 
         var position = pos.Value;
-        visited.Add(position.GetHashCode());
+        visited.Add(position);
         while (true)
         {
             var next = position.Move(facing);
@@ -41,7 +41,7 @@ public class Day6(string? input = null) : Day(input)
                 case Guard:
                 case Empty:
                     position = next;
-                    visited.Add(position.GetHashCode());
+                    visited.Add(position);
                     continue;
                 case Wall:
                     facing = facing.TurnRight();
@@ -49,8 +49,10 @@ public class Day6(string? input = null) : Day(input)
             }
         }
 
-        return visited.Count.ToString();
+        return visited;
     }
+
+    public override string Part1() => FindRoute().Count.ToString();
 
     public override string Part2()
         => GetPermutations().AsParallel().Count((g) => HasLoop(g, _guardPosition)).ToString();
@@ -89,10 +91,7 @@ public class Day6(string? input = null) : Day(input)
 
     private IEnumerable<Grid<bool>> GetPermutations()
     {
-        foreach (var pos in Map.Data
-                     .Select((c, i) => (c, i))
-                     .Where(x => x.c == Empty)
-                     .Select(x => new Point(x.i % Map.Width, x.i / Map.Width)))
+        foreach (var pos in FindRoute())
         {
             var map = Map2.Clone();
             map[pos.X, pos.Y] = true;
