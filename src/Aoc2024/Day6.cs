@@ -55,7 +55,7 @@ public class Day6(string? input = null) : Day(input)
     public override string Part1() => FindRoute().Count.ToString();
 
     public override string Part2()
-        => GetPermutations().AsParallel().Count((g) => HasLoop(g, _guardPosition)).ToString();
+        => GetPermutations().AsParallel().Count(g => HasLoop(g, _guardPosition)).ToString();
 
 
     private static bool HasLoop(Grid<bool> map, Point start)

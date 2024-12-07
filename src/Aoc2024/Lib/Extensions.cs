@@ -33,13 +33,13 @@ public static class Extensions
 
     public static IEnumerable<string> SplitNewLines(this string input) =>
         input.Split(["\r\n", "\n"], StringSplitOptions.RemoveEmptyEntries);
-    
+
     public static Grid<char> ToGrid(this string input)
     {
         var lines = input.SplitNewLines().ToArray();
         return new Grid<char>(lines.Length, lines[0].Length, input.StripNewLines().ToCharArray());
     }
-    
+
     public static Grid<bool> ToGrid(this string input, Func<char, bool> predicate)
     {
         var lines = input.SplitNewLines().ToArray();
@@ -47,5 +47,48 @@ public static class Extensions
         return new Grid<bool>(lines.Length, lines[0].Length, data);
     }
     
-    
+    public static int Digits(this long n)
+    {
+        return n switch
+        {
+            >= 0 and < 10L => 1,
+            >= 0 and < 100L => 2,
+            >= 0 and < 1000L => 3,
+            >= 0 and < 10000L => 4,
+            >= 0 and < 100000L => 5,
+            >= 0 and < 1000000L => 6,
+            >= 0 and < 10000000L => 7,
+            >= 0 and < 100000000L => 8,
+            >= 0 and < 1000000000L => 9,
+            >= 0 and < 10000000000L => 10,
+            >= 0 and < 100000000000L => 11,
+            >= 0 and < 1000000000000L => 12,
+            >= 0 and < 10000000000000L => 13,
+            >= 0 and < 100000000000000L => 14,
+            >= 0 and < 1000000000000000L => 15,
+            >= 0 and < 10000000000000000L => 16,
+            >= 0 and < 100000000000000000L => 17,
+            >= 0 and < 1000000000000000000L => 18,
+            >= 0 => 19,
+            > -10L => 2,
+            > -100L => 3,
+            > -1000L => 4,
+            > -10000L => 5,
+            > -100000L => 6,
+            > -1000000L => 7,
+            > -10000000L => 8,
+            > -100000000L => 9,
+            > -1000000000L => 10,
+            > -10000000000L => 11,
+            > -100000000000L => 12,
+            > -1000000000000L => 13,
+            > -10000000000000L => 14,
+            > -100000000000000L => 15,
+            > -1000000000000000L => 16,
+            > -10000000000000000L => 17,
+            > -100000000000000000L => 18,
+            > -1000000000000000000L => 19,
+            _ => 20
+        };
+    }
 }
