@@ -19,7 +19,7 @@ public class Day7Tests
             new[] { '|', '*' },
             new[] { '|', '|' }
         };
-        var actual = Day7.GetPermutations(allowedOperators, length);
+        var actual = Day7.GetOperators(allowedOperators, length);
         actual.Should().BeEquivalentTo(expected);
     }
 

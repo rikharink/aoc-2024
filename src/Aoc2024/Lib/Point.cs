@@ -9,6 +9,7 @@ public readonly record struct Point(long X, long Y)
 
     public static implicit operator Point((long X, long Y) tuple) => new(tuple.X, tuple.Y);
     public static implicit operator (long X, long Y)(Point point) => (point.X, point.Y);
+    public static Point Zero => new(0, 0);
 
     public long ManhattanDistance(Point other) => Math.Abs(X - other.X) + Math.Abs(Y - other.Y);
 

@@ -37,7 +37,7 @@ public class Day7(string? input = null) : Day(input)
         }
 
         public bool IsValid(char[] allowedOperators) =>
-            GetPermutations(allowedOperators, Values.Count - 1)
+            GetOperators(allowedOperators, Values.Count - 1)
                 .Any(ops => Calculate(ops) == Result);
 
         public override string ToString() => $"{Result}: {string.Join(" ", Values)}";
@@ -51,14 +51,14 @@ public class Day7(string? input = null) : Day(input)
             .ToList();
     }
 
-    public static IEnumerable<char[]> GetPermutations(char[] allowedOperators, int length)
+    public static IEnumerable<char[]> GetOperators(char[] allowedOperators, int length)
     {
         if (length == 1)
         {
             return allowedOperators.Select(c => new[] { c });
         }
 
-        return GetPermutations(allowedOperators, length - 1)
+        return GetOperators(allowedOperators, length - 1)
             .SelectMany(p => allowedOperators, (p, c) => p.Append(c).ToArray());
     }
 
