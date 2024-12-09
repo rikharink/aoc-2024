@@ -36,4 +36,12 @@ public static class Helpers
             yield return newCombination;
         }
     }
+
+    public static void Swap<T>(T[] list, int from, int to, int size = 1)
+    {
+        for (var i = 0; i < size; i++)
+        {
+            (list[from + i], list[to + i]) = (list[to + i], list[from + i]);
+        }
+    }
 }

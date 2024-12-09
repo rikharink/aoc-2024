@@ -103,7 +103,6 @@ public class Day8(string? input = null) : Day(input)
         return result;
     }
 
-
     public override string Part1()
         => GetAntinodeCoordinates().Count.ToString();
 

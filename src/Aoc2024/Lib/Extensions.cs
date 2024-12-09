@@ -91,4 +91,25 @@ public static class Extensions
             _ => 20
         };
     }
+
+    public static int FindFirstRunOfSize<T>(this IList<T> list, Func<T, bool> predicate, int size)
+    {
+        var run = 0;
+        for (var i = 0; i < list.Count; i++)
+        {
+            if (predicate(list[i]))
+            {
+                run++;
+                if (run == size)
+                {
+                    return i - size + 1;
+                }
+            }
+            else
+            {
+                run = 0;
+            }
+        }
+        return -1;
+    }
 }
