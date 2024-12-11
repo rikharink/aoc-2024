@@ -1,5 +1,3 @@
-using Aoc2024.Lib;
-
 namespace Aoc2024.Test;
 
 public class GridTests

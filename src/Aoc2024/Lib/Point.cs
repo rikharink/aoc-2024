@@ -1,5 +1,20 @@
 namespace Aoc2024.Lib;
 
+public readonly record struct PointD(double X, double Y)
+{
+    public static PointD operator +(PointD a, PointD b) => new(a.X + b.X, a.Y + b.Y);
+    public static PointD operator -(PointD a, PointD b) => new(a.X - b.X, a.Y - b.Y);
+    public static PointD operator *(PointD a, double b) => new(a.X * b, a.Y * b);
+    public static PointD operator /(PointD a, double b) => new(a.X / b, a.Y / b);
+
+    public static implicit operator PointD((double X, double Y) tuple) => new(tuple.X, tuple.Y);
+    public static implicit operator (double X, double Y)(PointD point) => (point.X, point.Y);
+    public static PointD Zero => new(0, 0);
+    public double ManhattanDistance(PointD other) => Math.Abs(X - other.X) + Math.Abs(Y - other.Y);
+    public static double ManhattanDistance(PointD a, PointD b) => a.ManhattanDistance(b);
+    public override string ToString() => $"({X}, {Y})";
+}
+
 public readonly record struct Point(long X, long Y)
 {
     public static Point operator +(Point a, Point b) => new(a.X + b.X, a.Y + b.Y);
@@ -12,6 +27,7 @@ public readonly record struct Point(long X, long Y)
     public static Point Zero => new(0, 0);
 
     public long ManhattanDistance(Point other) => Math.Abs(X - other.X) + Math.Abs(Y - other.Y);
+    public static long ManhattanDistance(Point a, Point b) => a.ManhattanDistance(b);
 
     public Point Move(CardinalDirection direction) => direction switch
     {

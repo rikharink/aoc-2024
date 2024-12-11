@@ -4,21 +4,21 @@ namespace Aoc2024.Lib;
 
 public static class Runner
 {
-    public static void Run()
+    public static void Run(string? input = null)
     {
         var dayType = typeof(Program).Assembly.GetTypes()
             .Where(t => t.IsSubclassOf(typeof(Day)))
             .OrderByDescending(t => int.Parse(t.Name.Replace("Day", "")))
             .First();
-        Run(dayType);
+        Run(dayType, input);
     }
 
-    public static void Run(int day)
+    public static void Run(int day, string? input = null)
     {
         var type = typeof(Program).Assembly
             .GetTypes()
             .First(t => t.IsSubclassOf(typeof(Day)) && t.Name == $"Day{day}");
-        Run(type);
+        Run(type, input);
     }
 
     public static void RunAll()
@@ -34,10 +34,9 @@ public static class Runner
         }
     }
 
-    private static void Run(Type dayType)
+    private static void Run(Type dayType, string? input = null)
     {
-        var (day, timeC, memoryC) = Measure(() => (Day)Activator.CreateInstance(dayType, [null])!);
-
+        var (day, timeC, memoryC) = Measure(() => (Day)Activator.CreateInstance(dayType, input)!);
         var (part1, time1, memory1) = Measure(() => day.Part1());
         var (part2, time2, memory2) = Measure(() => day.Part2());
 

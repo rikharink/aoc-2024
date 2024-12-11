@@ -1,5 +1,3 @@
-using System.Text;
-
 namespace Aoc2024.Lib;
 
 public readonly struct Grid<T> : IEquatable<Grid<T>>
@@ -20,6 +18,12 @@ public readonly struct Grid<T> : IEquatable<Grid<T>>
         Data = data;
     }
 
+    public T this[Point p]
+    {
+        get => this[p.X, p.Y];
+        set => this[p.X, p.Y] = value;
+    }
+
     public T this[long x, long y]
     {
         get => Data[y * Width + x];
@@ -33,15 +37,29 @@ public readonly struct Grid<T> : IEquatable<Grid<T>>
         {
             return null;
         }
+
         return new Point(index % Width, index / Width);
+    }
+
+    public IEnumerable<Point> FindAll(Func<T, bool> predicate)
+    {
+        for (var y = 0; y < Height; y++)
+        {
+            for (var x = 0; x < Width; x++)
+            {
+                if (predicate(this[x, y]))
+                {
+                    yield return new Point(x, y);
+                }
+            }
+        }
     }
 
     public bool IsInBounds(Point location)
         => location.X >= 0 && location.X < Width && location.Y >= 0 && location.Y < Height;
 
-    public List<T> GetDiagonalNeighbours(Point location)
+    public IEnumerable<T> GetDiagonalNeighbours(Point location)
     {
-        var neighbours = new List<T>();
         var upleft = location.Move(Direction.UpLeft);
         var upright = location.Move(Direction.UpRight);
         var downleft = location.Move(Direction.DownLeft);
@@ -49,31 +67,27 @@ public readonly struct Grid<T> : IEquatable<Grid<T>>
 
         if (upleft.X >= 0 && upleft.X < Width && upleft.Y >= 0 && upleft.Y < Height)
         {
-            neighbours.Add(this[upleft.X, upleft.Y]);
+            yield return this[upleft];
         }
 
         if (upright.X >= 0 && upright.X < Width && upright.Y >= 0 && upright.Y < Height)
         {
-            neighbours.Add(this[upright.X, upright.Y]);
+            yield return this[upright];
         }
 
         if (downleft.X >= 0 && downleft.X < Width && downleft.Y >= 0 && downleft.Y < Height)
         {
-            neighbours.Add(this[downleft.X, downleft.Y]);
+            yield return this[downleft];
         }
 
         if (downright.X >= 0 && downright.X < Width && downright.Y >= 0 && downright.Y < Height)
         {
-            neighbours.Add(this[downright.X, downright.Y]);
+            yield return this[downright];
         }
-
-
-        return neighbours;
     }
 
-    public List<T> GetNeighbours(Point location, bool includeDiagonal = false)
+    public IEnumerable<Point> GetNeighbourLocations(Point location, bool includeDiagonal = false)
     {
-        var neighbours = new List<T>();
         for (var y = -1; y <= 1; y++)
         {
             for (var x = -1; x <= 1; x++)
@@ -89,19 +103,24 @@ public readonly struct Grid<T> : IEquatable<Grid<T>>
                 }
 
                 var neighbour = location + new Point(x, y);
-                if (neighbour.X >= 0 && neighbour.X < Width && neighbour.Y >= 0 && neighbour.Y < Height)
+                if (IsInBounds(neighbour))
                 {
-                    neighbours.Add(this[neighbour.X, neighbour.Y]);
+                    yield return neighbour;
                 }
             }
         }
-
-        return neighbours;
     }
 
-    public List<T> GetRun(Point start, Direction direction, long length, bool shouldWrap = false)
+    public IEnumerable<T> GetNeighbours(Point location, bool includeDiagonal = false)
     {
-        var run = new List<T>();
+        foreach (var n in GetNeighbourLocations(location, includeDiagonal))
+        {
+            yield return this[n];
+        }
+    }
+
+    public IEnumerable<T> GetRun(Point start, Direction direction, long length, bool shouldWrap = false)
+    {
         var current = start;
         for (var i = 0; i < length; i++)
         {
@@ -117,11 +136,9 @@ public readonly struct Grid<T> : IEquatable<Grid<T>>
                 }
             }
 
-            run.Add(this[current.X, current.Y]);
+            yield return this[current];
             current = current.Move(direction);
         }
-
-        return run;
     }
 
     public override string ToString()
@@ -144,7 +161,7 @@ public readonly struct Grid<T> : IEquatable<Grid<T>>
     {
         return new Grid<T>(Width, Height, Data.ToArray());
     }
-    
+
     public override bool Equals(object? obj)
     {
         if (obj is null) return false;

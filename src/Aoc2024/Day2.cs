@@ -26,16 +26,16 @@ public class Day2(string? input = null) : Day(input)
                 }
 
                 if (!withTolerance) return false;
-                var removeCurrent = RemoveOneItem(i).IsSafe();
-                var removePrevious = RemoveOneItem(i - 1).IsSafe();
-                var removePreviousPrevious = i > 1 && RemoveOneItem(i - 2).IsSafe();
+                var removeCurrent = NewReportWithoutIndex(i).IsSafe();
+                var removePrevious = NewReportWithoutIndex(i - 1).IsSafe();
+                var removePreviousPrevious = i > 1 && NewReportWithoutIndex(i - 2).IsSafe();
                 return removeCurrent || removePrevious || removePreviousPrevious;
             }
 
             return true;
         }
 
-        public Report RemoveOneItem(int index) => new(Levels.RemoveOneItem(index));
+        public Report NewReportWithoutIndex(int index) => new(Levels.NewListWithoutIndex(index));
     }
 
     private List<Report> Reports { get; set; } = null!;
