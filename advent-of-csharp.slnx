@@ -1,0 +1,6 @@
+﻿<Solution>
+  <Project Path="src\Aoc2024\Aoc2024.csproj" Type="Classic C#" />
+  <Project Path="src\AocLib\AocLib.csproj" Type="Classic C#" />
+  <Project Path="test\Aoc2024.Test\Aoc2024.Test.csproj" Type="Classic C#" />
+  <Project Path="test\AocLib.Test\AocLib.Test.csproj" Type="Classic C#" />
+</Solution>

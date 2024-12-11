@@ -8,39 +8,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="17029e0c-1df5-4f5b-82da-c8d884a149d1" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.aoc-2024/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.aoc-2024/.idea/indexLayout.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.aoc-2024/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/aoc-2024.sln" beforeDir="false" afterPath="$PROJECT_DIR$/advent-of-csharp.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Aoc2024.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/src/Aoc2024/Aoc2024.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/GlobalUsings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Aoc2024/GlobalUsings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/AocClient.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/CardinalDirection.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/CollectionExtensions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/CompassDirection.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/Day.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/DictionaryExtensions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/Direction.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/FormatHelpers.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/Graph.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/GraphExtensions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/Grid.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/GridExtensions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/Helpers.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/NumberExtensions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/NumberHelpers.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/Point.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/Runner.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/StringExtensions.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Lib/Tree.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Aoc2024/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/src/Aoc2024/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Aoc2024.Test/GlobalUsings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/test/Aoc2024.Test/GlobalUsings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Aoc2024.Test/GraphTests.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Aoc2024.Test/GridTests.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Aoc2024.Test/HelpersTests.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/Aoc2024.Test/TreeTests.cs" beforeDir="false" />
-    </list>
+    <list default="true" id="17029e0c-1df5-4f5b-82da-c8d884a149d1" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -171,7 +139,7 @@
       <workItem from="1733819565764" duration="4164000" />
       <workItem from="1733831554915" duration="6657000" />
       <workItem from="1733904082005" duration="5362000" />
-      <workItem from="1733913347859" duration="6759000" />
+      <workItem from="1733913347859" duration="6790000" />
     </task>
     <servers />
   </component>
