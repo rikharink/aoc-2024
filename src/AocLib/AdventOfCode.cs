@@ -7,59 +7,80 @@ public static class AdventOfCode
 {
     public static int Run(params string[] args)
     {
-        if (args.Length == 1)
+        var assembly = Assembly.GetCallingAssembly();
+        switch (args.Length)
         {
-            if (args[0].Equals("all", StringComparison.CurrentCultureIgnoreCase))
+            case 1 when args[0].Equals("all", StringComparison.CurrentCultureIgnoreCase):
+                RunAll(assembly);
+                return 0;
+            case 1:
             {
-                AdventOfCode.RunAll();
+                if (!TryGetDay(args[0], out var day))
+                {
+                    Console.Error.WriteLine($"Invalid day number {args[0]}");
+                    return 1;
+                }
+
+                Run(assembly, day, null);
                 return 0;
             }
-
-            if (!int.TryParse(args[0], out var day) || day < 1 || day > 25)
+            case 2:
             {
-                Console.Error.WriteLine($"Invalid day number {args[0]}");
-                return 1;
+                if (!TryGetDay(args[0], out var day))
+                {
+                    Console.Error.WriteLine($"Invalid day number {args[0]}");
+                    return 1;
+                }
+                Run(assembly, day, args[1]);
+                return 0;
             }
-
-            AdventOfCode.Run(day);
-            return 0;
+            default:
+                Run(assembly, null);
+                return 0;
         }
-
-        AdventOfCode.Run();
-        return 0;
     }
-
-    public static void Run(string? input = null)
+    
+    private static bool TryGetDay(string arg, out int day)
     {
-        var dayType = Assembly.GetCallingAssembly().GetTypes()
+        if (int.TryParse(arg, out day) && day is >= 1 and <= 25)
+        {
+            return true;
+        }
+        day = 0;
+        return false;
+    }
+    
+    private static void Run(Assembly assembly, string? input)
+    {
+        var dayType = assembly.GetTypes()
             .Where(t => t.IsSubclassOf(typeof(Day)))
             .OrderByDescending(t => int.Parse(t.Name.Replace("Day", "")))
             .First();
         Run(dayType, input);
     }
 
-    public static void Run(int day, string? input = null)
+    private static void Run(Assembly assembly, int day, string? input)
     {
-        var type = Assembly.GetCallingAssembly()
+        var type = assembly
             .GetTypes()
             .First(t => t.IsSubclassOf(typeof(Day)) && t.Name == $"Day{day}");
         Run(type, input);
     }
 
-    public static void RunAll()
+    private static void RunAll(Assembly assembly)
     {
-        var types = Assembly.GetCallingAssembly()
+        var types = assembly
             .GetTypes()
             .Where(t => t.IsSubclassOf(typeof(Day)))
             .OrderBy(t => int.Parse(t.Name.Replace("Day", "")))
             .ToList();
         foreach (var type in types)
         {
-            Run(type);
+            Run(type, null);
         }
     }
 
-    private static void Run(Type dayType, string? input = null)
+    private static void Run(Type dayType, string? input)
     {
         var (day, timeC, memoryC) = Measure(() => (Day)Activator.CreateInstance(dayType, input)!);
         var (part1, time1, memory1) = Measure(() => day.Part1());
