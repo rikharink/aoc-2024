@@ -1,1 +1,1 @@
-﻿return Runner.Run(args);
+﻿return AdventOfCode.Run(args);

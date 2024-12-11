@@ -3,7 +3,7 @@ using ConsoleTables;
 
 namespace AocLib;
 
-public static class Runner
+public static class AdventOfCode
 {
     public static int Run(params string[] args)
     {
@@ -11,7 +11,7 @@ public static class Runner
         {
             if (args[0].Equals("all", StringComparison.CurrentCultureIgnoreCase))
             {
-                Runner.RunAll();
+                AdventOfCode.RunAll();
                 return 0;
             }
 
@@ -21,11 +21,11 @@ public static class Runner
                 return 1;
             }
 
-            Runner.Run(day);
+            AdventOfCode.Run(day);
             return 0;
         }
 
-        Runner.Run();
+        AdventOfCode.Run();
         return 0;
     }
 
