@@ -1,4 +1,4 @@
-namespace Aoc2024.Test;
+namespace AocLib.Test;
 
 public class TreeTests
 {

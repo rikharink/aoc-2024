@@ -1,4 +1,4 @@
-namespace Aoc2024.Lib;
+namespace AocLib;
 
 public class Tree<T>(T value)
     where T : notnull

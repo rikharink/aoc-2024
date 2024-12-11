@@ -1,4 +1,4 @@
-namespace Aoc2024.Lib;
+namespace AocLib;
 
 public readonly record struct PointD(double X, double Y)
 {

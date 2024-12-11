@@ -1,6 +1,6 @@
 // ReSharper disable VirtualMemberCallInConstructor
 
-namespace Aoc2024.Lib;
+namespace AocLib;
 
 public abstract class Day
 {

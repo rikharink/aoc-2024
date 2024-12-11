@@ -1,12 +1,37 @@
+using System.Reflection;
 using ConsoleTables;
 
-namespace Aoc2024.Lib;
+namespace AocLib;
 
 public static class Runner
 {
+    public static int Run(params string[] args)
+    {
+        if (args.Length == 1)
+        {
+            if (args[0].Equals("all", StringComparison.CurrentCultureIgnoreCase))
+            {
+                Runner.RunAll();
+                return 0;
+            }
+
+            if (!int.TryParse(args[0], out var day) || day < 1 || day > 25)
+            {
+                Console.Error.WriteLine($"Invalid day number {args[0]}");
+                return 1;
+            }
+
+            Runner.Run(day);
+            return 0;
+        }
+
+        Runner.Run();
+        return 0;
+    }
+
     public static void Run(string? input = null)
     {
-        var dayType = typeof(Program).Assembly.GetTypes()
+        var dayType = Assembly.GetCallingAssembly().GetTypes()
             .Where(t => t.IsSubclassOf(typeof(Day)))
             .OrderByDescending(t => int.Parse(t.Name.Replace("Day", "")))
             .First();
@@ -15,7 +40,7 @@ public static class Runner
 
     public static void Run(int day, string? input = null)
     {
-        var type = typeof(Program).Assembly
+        var type = Assembly.GetCallingAssembly()
             .GetTypes()
             .First(t => t.IsSubclassOf(typeof(Day)) && t.Name == $"Day{day}");
         Run(type, input);
@@ -23,7 +48,7 @@ public static class Runner
 
     public static void RunAll()
     {
-        var types = typeof(Program).Assembly
+        var types = Assembly.GetCallingAssembly()
             .GetTypes()
             .Where(t => t.IsSubclassOf(typeof(Day)))
             .OrderBy(t => int.Parse(t.Name.Replace("Day", "")))

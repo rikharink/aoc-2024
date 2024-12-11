@@ -1,4 +1,4 @@
-namespace Aoc2024.Lib;
+namespace AocLib;
 
 public readonly struct Grid<T> : IEquatable<Grid<T>>
 {

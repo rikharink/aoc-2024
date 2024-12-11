@@ -17,8 +17,11 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="ConsoleTables" Version="2.6.2"/>
         <PackageReference Include="Dumpify" Version="0.6.6" Condition="'$(Configuration)' == 'Debug'"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AocLib\AocLib.csproj" />
     </ItemGroup>
 
 </Project>
